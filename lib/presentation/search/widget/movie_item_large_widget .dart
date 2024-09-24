@@ -1,46 +1,29 @@
 import 'package:flutter/material.dart';
 
-class item1 extends StatelessWidget {
-  const item1({super.key});
+class MovieItemLargeWidget extends StatelessWidget {
+  final String image;
+  final String name;
+  final bool isLarge;
+  const MovieItemLargeWidget(
+      {super.key,
+      required this.image,
+      required this.name,
+      required this.isLarge});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 260,
+      height: isLarge ? 260 : 220,
       child: Column(
         children: [
-          Expanded(child: Image.asset('assets/images/anh1.png')),
+          Expanded(child: Image.asset(image)),
           const SizedBox(
             height: 8,
           ),
-          const Text(
-            'Soul (2020)',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class item3 extends StatelessWidget {
-  const item3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 220,
-      child: Column(
-        children: [
-          Expanded(child: Image.asset('assets/images/anh3.png')),
-          const SizedBox(
-            height: 8,
-          ),
-          const Text(
-            'Onward (2020)',
-            style: TextStyle(fontSize: 20, color: Colors.white),
+          Text(
+            name,
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           )
         ],
       ),

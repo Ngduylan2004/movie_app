@@ -1,72 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/models/movie_model.dart';
 import 'package:movie_app/presentation/search/widget/movie_item_large_widget%20.dart';
-import 'package:movie_app/presentation/search/widget/movie_item_small_widget.dart';
-
-class item3 extends StatelessWidget {
-  const item3({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 220,
-      child: Column(
-        children: [
-          Expanded(child: Image.asset('assets/images/anh3.png')),
-          const SizedBox(
-            height: 8,
-          ),
-          const Text(
-            'Onward (2020)',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class item4 extends StatelessWidget {
-  const item4({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: (MediaQuery.of(context).size.width - 48) / 2,
-      height: 260,
-      child: Column(
-        children: [
-          Expanded(child: Image.asset('assets/images/anh4.png')),
-          const SizedBox(
-            height: 8,
-          ),
-          const Text(
-            'Mulan (2020)',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class MovieGroupWidget extends StatelessWidget {
-  const MovieGroupWidget({super.key});
+  final List<MovieModel> listMovie;
+  const MovieGroupWidget({super.key, required this.listMovie});
 
   @override
   Widget build(BuildContext context) {
+    if (listMovie.length == 1) {
+      return Align(
+        alignment: Alignment.centerLeft,
+        child: MovieItemLargeWidget(
+          isLarge: true,
+          image: listMovie[0].image,
+          name: listMovie[0].name,
+        ),
+      );
+    }
+    if (listMovie.length == 2) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start, //đẩy
+        children: [
+          MovieItemLargeWidget(
+            isLarge: true,
+            image: listMovie[0].image,
+            name: listMovie[0].name,
+          ),
+          MovieItemLargeWidget(
+            isLarge: false,
+            image: listMovie[1].image,
+            name: listMovie[1].name,
+          ),
+        ],
+      );
+    }
+    if (listMovie.length == 3) {
+      return SizedBox(
+          width: MediaQuery.of(context).size.width - 32,
+          height: 545,
+          child: Wrap(
+              direction: Axis.vertical,
+              spacing: 16, // khoảng cách giữa các chip
+              runSpacing: 16, // khoảng cách giữa các dòng
+              children: <Widget>[
+                MovieItemLargeWidget(
+                  isLarge: true,
+                  image: listMovie[0].image,
+                  name: listMovie[0].name,
+                ),
+                MovieItemLargeWidget(
+                  isLarge: false,
+                  image: listMovie[1].image,
+                  name: listMovie[1].name,
+                ),
+                MovieItemLargeWidget(
+                  isLarge: false,
+                  image: listMovie[2].image,
+                  name: listMovie[2].name,
+                )
+              ]));
+    }
     return SizedBox(
       width: MediaQuery.of(context).size.width - 32,
       height: 545,
-      child: const Wrap(
+      child: Wrap(
+        alignment: WrapAlignment.end,
         direction: Axis.vertical,
         spacing: 16, // khoảng cách giữa các chip
         runSpacing: 16, // khoảng cách giữa các dòng
-        children: <Widget>[item1(), item2(), item3(), item4()],
+        children: <Widget>[
+          MovieItemLargeWidget(
+            isLarge: true,
+            image: listMovie[0].image,
+            name: listMovie[0].name,
+          ),
+          MovieItemLargeWidget(
+            isLarge: false,
+            image: listMovie[1].image,
+            name: listMovie[1].name,
+          ),
+          MovieItemLargeWidget(
+            isLarge: false,
+            image: listMovie[2].image,
+            name: listMovie[2].name,
+          ),
+          MovieItemLargeWidget(
+            isLarge: true,
+            image: listMovie[3].image,
+            name: listMovie[3].name,
+          ),
+        ],
       ),
     );
   }
