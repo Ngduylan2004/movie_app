@@ -4,11 +4,13 @@ class MovieItemLargeWidget extends StatelessWidget {
   final String image;
   final String name;
   final bool isLarge;
-  const MovieItemLargeWidget(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.isLarge});
+
+  const MovieItemLargeWidget({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.isLarge,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,15 @@ class MovieItemLargeWidget extends StatelessWidget {
       height: isLarge ? 260 : 220,
       child: Column(
         children: [
-          Expanded(child: Image.asset(image)),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0), // Bo góc
+              child: Image.network(
+                'https://media.themoviedb.org/t/p/w220_and_h330_face$image',
+                fit: BoxFit.cover, // Đảm bảo ảnh phủ kín khu vực
+              ),
+            ),
+          ),
           const SizedBox(
             height: 8,
           ),

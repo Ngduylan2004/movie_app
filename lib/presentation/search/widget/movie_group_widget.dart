@@ -1,97 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/movie_model.dart';
+import 'package:movie_app/models/listMovie/moives_model.dart';
 import 'package:movie_app/presentation/search/widget/movie_item_large_widget%20.dart';
 
 class MovieGroupWidget extends StatelessWidget {
-  final List<MovieModel> listMovie;
+  final List<Moives> listMovie;
+
   const MovieGroupWidget({super.key, required this.listMovie});
 
   @override
   Widget build(BuildContext context) {
-    if (listMovie.length == 1) {
-      return Align(
-        alignment: Alignment.centerLeft,
-        child: MovieItemLargeWidget(
-          isLarge: true,
-          image: listMovie[0].image,
-          name: listMovie[0].name,
-        ),
-      );
-    }
-    if (listMovie.length == 2) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start, //đẩy
-        children: [
-          MovieItemLargeWidget(
+    // Determine the layout based on the number of movies in the list
+    switch (listMovie.length) {
+      case 1:
+        return Align(
+          alignment: Alignment.centerLeft,
+          child: MovieItemLargeWidget(
             isLarge: true,
-            image: listMovie[0].image,
-            name: listMovie[0].name,
+            image: listMovie[0].backdropPath ?? '',
+            name: listMovie[0].title ?? 'Untitled',
           ),
-          MovieItemLargeWidget(
-            isLarge: false,
-            image: listMovie[1].image,
-            name: listMovie[1].name,
-          ),
-        ],
-      );
-    }
-    if (listMovie.length == 3) {
-      return SizedBox(
+        );
+
+      case 2:
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: listMovie.map((movie) {
+            return MovieItemLargeWidget(
+              isLarge: listMovie.indexOf(movie) == 0,
+              image: movie.backdropPath ?? '',
+              name: movie.title ?? 'Untitled',
+            );
+          }).toList(),
+        );
+
+      case 3:
+        return SizedBox(
           width: MediaQuery.of(context).size.width - 32,
           height: 545,
           child: Wrap(
-              direction: Axis.vertical,
-              spacing: 16, // khoảng cách giữa các chip
-              runSpacing: 16, // khoảng cách giữa các dòng
-              children: <Widget>[
-                MovieItemLargeWidget(
-                  isLarge: true,
-                  image: listMovie[0].image,
-                  name: listMovie[0].name,
-                ),
-                MovieItemLargeWidget(
-                  isLarge: false,
-                  image: listMovie[1].image,
-                  name: listMovie[1].name,
-                ),
-                MovieItemLargeWidget(
-                  isLarge: false,
-                  image: listMovie[2].image,
-                  name: listMovie[2].name,
-                )
-              ]));
+            direction: Axis.vertical,
+            spacing: 16,
+            children: listMovie.map((movie) {
+              return MovieItemLargeWidget(
+                isLarge: listMovie.indexOf(movie) == 0,
+                image: movie.backdropPath ?? '',
+                name: movie.title ?? 'Untitled',
+              );
+            }).toList(),
+          ),
+        );
+
+      default:
+        return SizedBox(
+          width: MediaQuery.of(context).size.width - 32,
+          height: 545,
+          child: Wrap(
+            alignment: WrapAlignment.end,
+            direction: Axis.vertical,
+            spacing: 16,
+            children: listMovie.map((movie) {
+              return MovieItemLargeWidget(
+                isLarge: listMovie.indexOf(movie) == 0 ||
+                    listMovie.indexOf(movie) == 3,
+                image: movie.backdropPath ?? '',
+                name: movie.title ?? 'Untitled',
+              );
+            }).toList(),
+          ),
+        );
     }
-    return SizedBox(
-      width: MediaQuery.of(context).size.width - 32,
-      height: 545,
-      child: Wrap(
-        alignment: WrapAlignment.end,
-        direction: Axis.vertical,
-        spacing: 16, // khoảng cách giữa các chip
-        runSpacing: 16, // khoảng cách giữa các dòng
-        children: <Widget>[
-          MovieItemLargeWidget(
-            isLarge: true,
-            image: listMovie[0].image,
-            name: listMovie[0].name,
-          ),
-          MovieItemLargeWidget(
-            isLarge: false,
-            image: listMovie[1].image,
-            name: listMovie[1].name,
-          ),
-          MovieItemLargeWidget(
-            isLarge: false,
-            image: listMovie[2].image,
-            name: listMovie[2].name,
-          ),
-          MovieItemLargeWidget(
-            isLarge: true,
-            image: listMovie[3].image,
-            name: listMovie[3].name,
-          ),
-        ],
-      ),
-    );
   }
 }

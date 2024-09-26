@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/movie_model.dart';
+import 'package:movie_app/models/listMovie/moives_model.dart';
 import 'package:movie_app/presentation/detail/widget/detail_widget.dart';
 
 class DetailPage extends StatelessWidget {
-  final MovieModel movie; // Declare the MovieModel variable
+  final Moives movie; // Declare the MovieModel variable
 
   // Constructor with named parameter
   const DetailPage({super.key, required this.movie});

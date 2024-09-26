@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/presentation/home/bloc/home_bloc.dart';
 import 'package:movie_app/presentation/newFeed/newfeed_screen.dart';
 import 'package:movie_app/presentation/search/searching_screen.dart';
 
@@ -12,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0; // Biến để lưu index hiện tại
-
   // Tạo danh sách màn hình
 
   @override
@@ -23,8 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Hiển thị màn hình theo index đã chọn
           Expanded(
-            child:
-                _selectedIndex == 0 ? NewfeedScreen() : const SearchingScreen(),
+            child: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                if (state.pageIndex == 0) {
+                  return const NewfeedScreen();
+                } else if (state.pageIndex == 1) {
+                  return const SearchingScreen();
+                }
+                return Container();
+              },
+            ),
           ),
           // Thanh dưới cùng chứa các biểu tượng (icon)
           Container(
@@ -51,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onIconTapped(int index) {
-    setState(() {
-      _selectedIndex = index; // Cập nhật index khi icon được nhấn
-    });
+    context.read<HomeBloc>().add(
+          NavigatorPage(index),
+        );
   }
 }
