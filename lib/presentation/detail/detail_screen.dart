@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:movie_app/models/listMovie/moives_model.dart';
 import 'package:movie_app/presentation/detail/widget/detail_widget.dart';
 
@@ -23,9 +24,10 @@ class DetailPage extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 // Use Image.asset with BoxFit.cover to fill the width
-                Image.asset(
-                  'assets/images/home/home_list2.png',
+                Image.network(
+                  'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
                   width: MediaQuery.of(context).size.width, // Full width
+                  height: 450,
                   // You can adjust this height as needed
                   fit: BoxFit.cover, // Make the image cover the area
                 ),
@@ -36,31 +38,34 @@ class DetailPage extends StatelessWidget {
               ],
             ),
             // Additional content can be added here
-            const Padding(
-              padding: EdgeInsets.all(12),
+            Padding(
+              padding: const EdgeInsets.all(12),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          'Star Wars: The Last Jedi ',
-                          style: TextStyle(color: Colors.white, fontSize: 24),
+                        Expanded(
+                          child: Text(
+                            movie.title ?? 'Untitled',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 24),
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
-                        Text(
+                        const Text(
                           '4K',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -68,56 +73,56 @@ class DetailPage extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
-                              Icons.access_time,
-                              size: 20,
-                              color: Colors.white,
+                            const Text(
+                              'VoteCount:', // Hiển thị điểm đánh giá
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(
-                              '152 minutes',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                              '${movie.voteCount ?? 0}', // Hiển thị điểm đánh giá
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 15),
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 20,
                               color: Colors.white,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(
-                              '7.0 (IMDb)',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
+                              '${movie.voteAverage ?? 0} (IMDb)', // Hiển thị điểm đánh giá
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 15),
                             )
                           ],
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 0.2,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Text(
                               'Release date',
@@ -135,13 +140,16 @@ class DetailPage extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              'December 9, 2017',
-                              style: TextStyle(color: Colors.white),
+                              movie.releaseDate != null
+                                  ? DateFormat('dd MMMM yyyy').format(
+                                      DateTime.parse(movie.releaseDate!))
+                                  : 'No release date available', // Kiểm tra null và định dạng ngày
+                              style: const TextStyle(color: Colors.white),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 50,
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Chip(
                                   backgroundColor: Color(0xff15141F),
@@ -168,28 +176,29 @@ class DetailPage extends StatelessWidget {
                         )
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 0.2,
                     ),
-                    Text(
+                    const Text(
                       'Synopsis',
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                     Text(
-                      'Rey (Daisy Ridley) finally manages to find the legendary Jedi  knight, Luke Skywalker (Mark Hamill) on an island with a magical aura. The heroes of The Force Awakens including Leia, Finn Read more..',
-                      style: TextStyle(color: Colors.white70),
+                      movie.overview ??
+                          'No synopsis available.', // Hiển thị tóm tắt phim
+                      style: const TextStyle(color: Colors.white60),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-                    Text(
+                    const Text(
                       'Related Movies',
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-                    DetailWidget(),
+                    const DetailWidget(),
                   ]),
             )
           ],

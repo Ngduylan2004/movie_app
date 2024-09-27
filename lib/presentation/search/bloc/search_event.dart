@@ -4,6 +4,10 @@ sealed class SearchEvent {}
 
 class SearchEventGenreMovies extends SearchEvent {}
 
-class SearchEventGenreMoviesTab extends SearchEvent {}
+class SearchEventGenreMoviesTab extends SearchEvent {
+  final Genres selectedGenre;
+
+  SearchEventGenreMoviesTab(this.selectedGenre);
+}
 
 class SearchEventLoadMovies extends SearchEvent {}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/listMovie/moives_model.dart';
-import 'package:movie_app/presentation/detail/detail_screen.dart';
 import 'package:movie_app/presentation/search/bloc/search_bloc.dart';
 import 'package:movie_app/presentation/search/widget/movie_group_widget.dart';
 import 'package:movie_app/repository/api_moive.dart';
@@ -71,25 +70,33 @@ class _SearchingScreenState extends State<SearchingScreen>
               const SizedBox(height: 10),
               BlocBuilder<SearchBloc, SearchState>(
                 builder: (context, state) {
+                  print(state
+                      .categories); // Kiểm tra xem categories có dữ liệu không
                   if (state.categories.isEmpty) {
                     return const SizedBox.shrink();
                   }
                   return DefaultTabController(
                     length: state.categories.length,
                     child: TabBar(
-                      isScrollable: true, // gia hạn kích thước
+                      isScrollable: true,
                       indicatorSize: TabBarIndicatorSize.label,
+                      onTap: (index) {
+                        final selectedGenre = state.categories[index];
+                        context
+                            .read<SearchBloc>()
+                            .add(SearchEventGenreMoviesTab(selectedGenre));
+                      },
                       tabs: state.categories
-                          .map((category) => Tab(text: category))
+                          .map((category) => Tab(text: category.name))
                           .toList(),
-                      indicatorColor: Colors.white, // Màu chỉ báo cho tab
-                      labelColor: Colors.white, // Màu chữ của tab
-                      unselectedLabelColor:
-                          Colors.grey, // Màu chữ của tab không được chọn
+                      indicatorColor: Colors.white,
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.grey,
                     ),
                   );
                 },
               ),
+
               const SizedBox(height: 20),
 
               // Hiển thị danh sách các phần phim
@@ -110,17 +117,6 @@ class _SearchingScreenState extends State<SearchingScreen>
                       itemCount: chunkedList.length, // Số lượng phim
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {
-                            // Điều hướng đến trang chi tiết
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailPage(
-                                    movie: state
-                                        .movies[index]), // Truyền MovieModel
-                              ),
-                            );
-                          },
                           child:
                               MovieGroupWidget(listMovie: chunkedList[index]),
                         );

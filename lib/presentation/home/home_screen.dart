@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 if (state.pageIndex == 0) {
-                  return const NewfeedScreen();
+                  return NewfeedScreen();
                 } else if (state.pageIndex == 1) {
                   return const SearchingScreen();
                 }
