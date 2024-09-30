@@ -15,31 +15,28 @@ class SearchingScreen extends StatefulWidget {
 class _SearchingScreenState extends State<SearchingScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
-
   final MovieRepository movieRepository = MovieRepository();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      //  context
-      //         .read<SearchBloc>()
-      //         .add(SearchEventIncrementCounter());
-      //   },
       create: (context) => SearchBloc(movieRepository)
         ..add(SearchEventLoadMovies())
         ..add(SearchEventGenreMovies()),
       child: Scaffold(
         backgroundColor: const Color(0xff15141F),
         appBar: AppBar(
-          toolbarHeight: 100, // Giới hạn độ cao appbar
-          backgroundColor:
-              const Color(0xff15141F), // Đặt màu nền của AppBar là màu đen
+          toolbarHeight: 100,
+          backgroundColor: const Color(0xff15141F),
           title: const Padding(
             padding: EdgeInsets.only(top: 10, left: 10),
             child: Text(
-              'Find Movies, Tv series,\n and more..',
+              'Find Movies, TV series,\n and more..',
               style: TextStyle(
-                  color: Colors.white, fontFamily: 'Lato', fontSize: 30),
+                color: Colors.white,
+                fontFamily: 'Lato',
+                fontSize: 30,
+              ),
             ),
           ),
         ),
@@ -47,31 +44,48 @@ class _SearchingScreenState extends State<SearchingScreen>
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xff211F30), // Background input
-                  hintText: 'Sherlock Holmes..',
-                  hintStyle:
-                      TextStyle(color: Colors.grey[400]), // Màu chữ gợi ý
-                  prefixIcon: const Icon(Icons.search,
-                      color: Colors.white), // Màu của biểu tượng tìm kiếm
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: const BorderSide(
-                      color: Colors.grey, // Màu viền của TextField
+              // Ô tìm kiếm với nút nhấn
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xff211F30),
+                        hintText: 'Sherlock Holmes..',
+                        hintStyle: TextStyle(color: Colors.grey[400]),
+                        prefixIcon:
+                            const Icon(Icons.search, color: Colors.white),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(24),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.white),
+                      onChanged: (value) {
+                        // Gọi sự kiện tìm kiếm khi có sự thay đổi
+                        context
+                            .read<SearchBloc>()
+                            .add(SearchEventSearchMovies(keyWord: value));
+                      },
                     ),
                   ),
-                ),
-                style: const TextStyle(
-                    color: Colors.white), // Màu chữ trong TextField
+                  // IconButton(
+                  //   icon: const Icon(Icons.search, color: Colors.white),
+                  //   onPressed: () {
+                  //     // Gọi sự kiện tìm kiếm khi nút được nhấn
+                  //     context.read<SearchBloc>().add(SearchEventSearchMovies(
+                  //         keyWord: _searchController.text));
+                  //   },
+                  // ),
+                ],
               ),
               const SizedBox(height: 10),
+
+              // TabBar cho thể loại phim
               BlocBuilder<SearchBloc, SearchState>(
                 builder: (context, state) {
-                  print(state
-                      .categories); // Kiểm tra xem categories có dữ liệu không
                   if (state.categories.isEmpty) {
                     return const SizedBox.shrink();
                   }
@@ -96,25 +110,30 @@ class _SearchingScreenState extends State<SearchingScreen>
                   );
                 },
               ),
-
               const SizedBox(height: 20),
 
-              // Hiển thị danh sách các phần phim
+              // Danh sách phim
               Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
-                    // Sử dụng danh sách movies từ state
-                    final List<List<Moives>> chunkedList = []; //note
+                    // Lọc danh sách phim dựa trên từ khóa tìm kiếm
+                    final filteredMovies = state.movies.where((movie) {
+                      return movie.title!
+                          .toLowerCase()
+                          .contains(_searchController.text.toLowerCase());
+                    }).toList();
 
-                    for (var i = 0; i < state.movies.length; i += 4) {
-                      chunkedList.add(state.movies.sublist(
+                    final List<List<Moives>> chunkedList = [];
+                    for (var i = 0; i < filteredMovies.length; i += 4) {
+                      chunkedList.add(filteredMovies.sublist(
                           i,
-                          i + 4 > state.movies.length
-                              ? state.movies.length
+                          i + 4 > filteredMovies.length
+                              ? filteredMovies.length
                               : i + 4));
                     }
+
                     return ListView.builder(
-                      itemCount: chunkedList.length, // Số lượng phim
+                      itemCount: chunkedList.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           child:
@@ -125,22 +144,6 @@ class _SearchingScreenState extends State<SearchingScreen>
                   },
                 ),
               ),
-              BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  return const Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        // FloatingActionButton(
-                        //   onPressed: () {
-                        //     context
-                        //         .read<SearchBloc>()
-                        //         .add(SearchEventIncrementCounter());
-                        //   },
-                        //   child: const Icon(Icons.add),
-                        // ),
-                      ]);
-                },
-              )
             ],
           ),
         ),

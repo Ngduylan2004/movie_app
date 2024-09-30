@@ -1,47 +1,42 @@
 import 'package:movie_app/models/generMovie/generMovie.dart';
 import 'package:movie_app/models/listMovie/moives_model.dart';
 import 'package:movie_app/models/listMovieTrending/list_movie_treding.dart';
-import 'package:movie_app/service/api_list_movie.dart';
+import 'package:movie_app/service/api_movies_service.dart';
+import 'package:movie_app/service/api_service.dart';
 
-// note
 class MovieRepository {
-  final MovieService _movieService = MovieService(); //note
+  final ApiMoviesService _movieService =
+      ApiMoviesService(ApiService.istant); // Khởi tạo ApiMoviesService
 
-  // get genre movie
+  // Lấy danh sách thể loại phim
   Future<List<Genres>> getGenres() async {
-    final moviGenre = await _movieService.fetGenerMovies();
-    return moviGenre
-        .map<Genres>(
-          (movie) => Genres.fromJson(movie),
-        )
-        .toList();
+    final genreData = await _movieService.fetchGenreMovies();
+    return genreData.map<Genres>((genre) => Genres.fromJson(genre)).toList();
   }
 
-  // get list movie
-  // Future<List<Moives>> getPopularMovies(int page) async {
-  //   final moviesData = await _movieService.fetchPopularMovies(page);
-  //   return moviesData.map((movie) => Moives.fromJson(movie)).toList();
-  // }
+  // Lấy danh sách phim theo trang
   Future<List<Moives>> getListMovies(int page) async {
     final moviesData = await _movieService.fetchListMovies(page);
-    return moviesData.map((movie) => Moives.fromJson(movie)).toList();
+    return moviesData.map<Moives>((movie) => Moives.fromJson(movie)).toList();
   }
 
-  Future<List<Moives>> getMoviesByGenre({String? name}) async {
-    final moviGenre = await _movieService.fetGenerMovies();
-    return moviGenre
-        .map<Moives>(
-          (moivie) => Moives.fromJson(moivie),
-        )
+  // Lấy danh sách phim theo thể loại
+  Future<List<Moives>> getMoviesByGenre({required int genreId}) async {
+    final moviesData = await _movieService.fetchListMovies(genreId);
+    return moviesData.map<Moives>((movie) => Moives.fromJson(movie)).toList();
+  }
+
+  // Lấy danh sách phim xu hướng
+  Future<List<ListMovieTrending>> getTrendingMovies() async {
+    final trendingData = await _movieService.fetchTrendingMovies();
+    return trendingData
+        .map<ListMovieTrending>((movie) => ListMovieTrending.fromJson(movie))
         .toList();
   }
 
-  // get Treding movies
-  Future<List<ListMovieTrending>> getTrendingMoives() async {
-    final movieTrending = await _movieService.fetchTrendingMovies();
-    return movieTrending
-        .map((listMovieTrending) =>
-            ListMovieTrending.fromJson(listMovieTrending))
-        .toList();
+  // search
+  Future<List<Moives>> searchMovies(String keyword) async {
+    final searchData = await _movieService.fetchMoviesBySearch(keyword);
+    return searchData.map<Moives>((movie) => Moives.fromJson(movie)).toList();
   }
 }

@@ -1,0 +1,10 @@
+^C:\DART\MOVIE_APP\BUILD\WINDOWS\X64\CMAKEFILES\278A10C5711475F16FF5DD8698CA9C7F\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

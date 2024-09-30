@@ -10,7 +10,7 @@ class NewFeedBloc extends Bloc<NewFeedEvent, NewFeedState> {
   NewFeedBloc() : super(NewFeedState([])) {
     on<NewFeedEventTreding>(
       (event, emit) async {
-        final TrendingMoives = await movieRepository.getTrendingMoives();
+        final TrendingMoives = await movieRepository.getTrendingMovies();
         emit(
           NewFeedState(TrendingMoives),
         );
