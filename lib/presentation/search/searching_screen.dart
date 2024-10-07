@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/models/listMovie/moives_model.dart';
+import 'package:movie_app/data/repostory/movies_repostory_impl.dart';
+import 'package:movie_app/domain/entities/movies_entities.dart';
 import 'package:movie_app/presentation/search/bloc/search_bloc.dart';
 import 'package:movie_app/presentation/search/widget/movie_group_widget.dart';
-import 'package:movie_app/repository/api_moive.dart';
+import 'package:movie_app/presentation/theme.dart';
 
 class SearchingScreen extends StatefulWidget {
   const SearchingScreen({super.key});
@@ -15,26 +16,25 @@ class SearchingScreen extends StatefulWidget {
 class _SearchingScreenState extends State<SearchingScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
-  final MovieRepository movieRepository = MovieRepository();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SearchBloc(movieRepository)
+      create: (context) => SearchBloc(MoviesRepositoryImpl.instance)
         ..add(SearchEventLoadMovies())
         ..add(SearchEventGenreMovies()),
       child: Scaffold(
-        backgroundColor: const Color(0xff15141F),
+        backgroundColor: AppTheme.backgroundColor,
         appBar: AppBar(
           toolbarHeight: 100,
-          backgroundColor: const Color(0xff15141F),
+          backgroundColor: Colors.transparent,
           title: const Padding(
             padding: EdgeInsets.only(top: 10, left: 10),
             child: Text(
               'Find Movies, TV series,\n and more..',
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: 'Lato',
+                fontFamily: AppTheme.fontFamily,
                 fontSize: 30,
               ),
             ),
@@ -51,34 +51,32 @@ class _SearchingScreenState extends State<SearchingScreen>
                     child: TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              _searchController.clear();
+                            },
+                            icon: const Icon(Icons.clear)),
                         filled: true,
                         fillColor: const Color(0xff211F30),
                         hintText: 'Sherlock Holmes..',
                         hintStyle: TextStyle(color: Colors.grey[400]),
-                        prefixIcon:
-                            const Icon(Icons.search, color: Colors.white),
+                        prefixIcon: IconButton(
+                          icon: const Icon(Icons.search, color: Colors.white),
+                          onPressed: () {
+                            // Gửi sự kiện tìm kiếm khi người dùng nhấn nút
+                            context.read<SearchBloc>().add(SearchKeyWordMovies(
+                                keyWord: _searchController.text));
+                            // FocusScope.of(context).unfocus();
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(24),
                           borderSide: const BorderSide(color: Colors.grey),
                         ),
                       ),
                       style: const TextStyle(color: Colors.white),
-                      onChanged: (value) {
-                        // Gọi sự kiện tìm kiếm khi có sự thay đổi
-                        context
-                            .read<SearchBloc>()
-                            .add(SearchEventSearchMovies(keyWord: value));
-                      },
                     ),
                   ),
-                  // IconButton(
-                  //   icon: const Icon(Icons.search, color: Colors.white),
-                  //   onPressed: () {
-                  //     // Gọi sự kiện tìm kiếm khi nút được nhấn
-                  //     context.read<SearchBloc>().add(SearchEventSearchMovies(
-                  //         keyWord: _searchController.text));
-                  //   },
-                  // ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -103,8 +101,8 @@ class _SearchingScreenState extends State<SearchingScreen>
                       tabs: state.categories
                           .map((category) => Tab(text: category.name))
                           .toList(),
-                      indicatorColor: Colors.white,
-                      labelColor: Colors.white,
+                      indicatorColor: AppTheme.accentColor,
+                      labelColor: AppTheme.accentColor,
                       unselectedLabelColor: Colors.grey,
                     ),
                   );
@@ -116,14 +114,13 @@ class _SearchingScreenState extends State<SearchingScreen>
               Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
-                    // Lọc danh sách phim dựa trên từ khóa tìm kiếm
                     final filteredMovies = state.movies.where((movie) {
                       return movie.title!
                           .toLowerCase()
                           .contains(_searchController.text.toLowerCase());
                     }).toList();
 
-                    final List<List<Moives>> chunkedList = [];
+                    final List<List<MoviesEntities>> chunkedList = [];
                     for (var i = 0; i < filteredMovies.length; i += 4) {
                       chunkedList.add(filteredMovies.sublist(
                           i,

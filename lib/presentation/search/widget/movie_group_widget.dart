@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/listMovie/moives_model.dart';
+import 'package:movie_app/domain/entities/movies_entities.dart';
 import 'package:movie_app/presentation/search/widget/movie_item_large_widget%20.dart';
 
 class MovieGroupWidget extends StatelessWidget {
-  final List<Moives> listMovie;
+  final List<MoviesEntities> listMovie;
 
   const MovieGroupWidget({super.key, required this.listMovie});
 

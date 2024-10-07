@@ -5,15 +5,18 @@ sealed class SearchEvent {}
 class SearchEventGenreMovies extends SearchEvent {}
 
 class SearchEventGenreMoviesTab extends SearchEvent {
-  final Genres selectedGenre; // note
+  final GenreMoviesEntities selectedGenre; // note
 
   SearchEventGenreMoviesTab(this.selectedGenre);
 }
 
 class SearchEventLoadMovies extends SearchEvent {}
 
-class SearchEventSearchMovies extends SearchEvent {
+//
+class SearchEventLoadMoviesByGenre extends SearchEvent {}
+
+class SearchKeyWordMovies extends SearchEvent {
   final String keyWord;
 
-  SearchEventSearchMovies({required this.keyWord});
+  SearchKeyWordMovies({required this.keyWord});
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/listMovie/moives_model.dart';
-import 'package:movie_app/presentation/detail/detail_screen.dart'; // Import model phim
+import 'package:movie_app/domain/entities/movies_entities.dart';
+import 'package:movie_app/presentation/detail/detail_screen.dart';
 
 class MovieItemLargeWidget extends StatelessWidget {
   final String image;
   final String name;
   final bool isLarge;
-  final Moives movie; // Thêm đối tượng phim
+  final MoviesEntities movie; // Thêm đối tượng phim
 
   const MovieItemLargeWidget({
     super.key,

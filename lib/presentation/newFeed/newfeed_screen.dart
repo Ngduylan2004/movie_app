@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/data/repostory/movies_repostory_impl.dart';
 import 'package:movie_app/presentation/newFeed/bloc/new_feed_bloc.dart';
 import 'package:movie_app/presentation/newFeed/widget/newfeed_banner_widget.dart';
 import 'package:movie_app/presentation/newFeed/widget/newfeed_widget.dart';
+import 'package:movie_app/presentation/theme.dart';
 
 class NewfeedScreen extends StatelessWidget {
   const NewfeedScreen({super.key});
@@ -10,12 +12,13 @@ class NewfeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewFeedBloc()..add(NewFeedEventTreding()),
+      create: (context) => NewFeedBloc(MoviesRepositoryImpl.instance)
+        ..add(NewFeedEventTreding()),
       child: Scaffold(
-        backgroundColor: const Color(0xff15141F),
+        backgroundColor: AppTheme.backgroundColor,
         appBar: AppBar(
           titleSpacing: 28,
-          backgroundColor: const Color(0xff15141F),
+          backgroundColor: Colors.transparent,
           toolbarHeight: 80,
           title: const Padding(
             padding: EdgeInsets.only(top: 53.0),

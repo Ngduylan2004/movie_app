@@ -12,10 +12,9 @@ void main() async {
 
   runApp(BlocProvider(
     create: (context) => HomeBloc(),
-    child: MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+    child: const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: HomeScreen(),
     ),
   ));
 }
