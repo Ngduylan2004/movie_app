@@ -13,25 +13,15 @@ class ApiService {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          // Trước khi gửi request (có thể thêm header, token,...)
-          print('Sending request to: ${options.uri}');
-
-          // Tự động thêm API key vào tất cả các request nếu cần
           options.queryParameters.addAll({
             'api_key':
                 dotenv.env['API_KEY'] ?? 'default_api_key', // Lấy từ file .env
           });
 
-          // Ví dụ: Thêm token vào Header nếu cần
-          // options.headers['Authorization'] = 'Bearer $token'; x
-
-          return handler.next(options); // Tiếp tục gửi request
+          return handler.next(options);
         },
         onResponse: (response, handler) {
-          // Sau khi nhận được response
-          print('Received response: ${response.statusCode}');
-
-          return handler.next(response); // Tiếp tục xử lý response
+          return handler.next(response);
         },
         onError: (DioException e, handler) {
           // Xử lý khi có lỗi xảy ra

@@ -59,36 +59,36 @@ class NewfeedWidget extends StatelessWidget {
                               ],
                             ),
                             child: Image.network(
-                              'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
+                              'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: 400,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Positioned(
-                          bottom: 10,
-                          child: Container(
-                            width: 160, // Tăng kích thước để đẹp hơn
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(
-                                  0.6), // Đổi màu cho độ tương phản
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Center(
-                              child: Text(
-                                movie.title ?? 'Unknown Title',
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight
-                                      .bold, // Thêm độ đậm cho tiêu đề
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   bottom: 10,
+                        //   child: Container(
+                        //     width: 160, // Tăng kích thước để đẹp hơn
+                        //     height: 60,
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.grey.withOpacity(
+                        //           0.6), // Đổi màu cho độ tương phản
+                        //       borderRadius: BorderRadius.circular(20),
+                        //     ),
+                        //     child: Center(
+                        //       child: Text(
+                        //         movie.title ?? 'Unknown Title',
+                        //         style: const TextStyle(
+                        //           fontSize: 14,
+                        //           fontWeight: FontWeight
+                        //               .bold, // Thêm độ đậm cho tiêu đề
+                        //           color: Colors.white,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         // Thêm phần đánh giá ở góc trên bên phải
                         Positioned(
                           top: 10,

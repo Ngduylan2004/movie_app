@@ -24,7 +24,7 @@ class _SearchingScreenState extends State<SearchingScreen>
         ..add(SearchEventLoadMovies())
         ..add(SearchEventGenreMovies()),
       child: Scaffold(
-        backgroundColor: AppTheme.backgroundColor,
+        backgroundColor: AppTheme.primaryColor,
         appBar: AppBar(
           toolbarHeight: 100,
           backgroundColor: Colors.transparent,
@@ -34,7 +34,7 @@ class _SearchingScreenState extends State<SearchingScreen>
               'Find Movies, TV series,\n and more..',
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: AppTheme.fontFamily,
+                fontFamily: 'Lato',
                 fontSize: 30,
               ),
             ),
@@ -101,9 +101,9 @@ class _SearchingScreenState extends State<SearchingScreen>
                       tabs: state.categories
                           .map((category) => Tab(text: category.name))
                           .toList(),
-                      indicatorColor: AppTheme.accentColor,
+                      indicatorColor: const Color.fromARGB(255, 254, 123, 0),
                       labelColor: AppTheme.accentColor,
-                      unselectedLabelColor: Colors.grey,
+                      unselectedLabelColor: Colors.white,
                     ),
                   );
                 },

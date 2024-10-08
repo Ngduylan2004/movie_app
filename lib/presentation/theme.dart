@@ -7,5 +7,8 @@ class AppTheme {
   static const Color backgroundColor = Color.fromARGB(255, 20, 19, 30);
   static const Color textColor = Colors.white;
   static const Color hintColor = Colors.grey;
-  static const String fontFamily = 'Lato'; // Thay đổi tên phông chữ nếu cần
+  static const String fontFamily = 'Lato';
+  static ThemeData get them {
+    return ThemeData();
+  }
 }

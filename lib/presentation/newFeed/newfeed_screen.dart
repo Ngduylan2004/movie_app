@@ -15,7 +15,7 @@ class NewfeedScreen extends StatelessWidget {
       create: (context) => NewFeedBloc(MoviesRepositoryImpl.instance)
         ..add(NewFeedEventTreding()),
       child: Scaffold(
-        backgroundColor: AppTheme.backgroundColor,
+        backgroundColor: AppTheme.primaryColor,
         appBar: AppBar(
           titleSpacing: 28,
           backgroundColor: Colors.transparent,
@@ -29,7 +29,7 @@ class NewfeedScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 29,
                     fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 254, 123, 0),
+                    color: AppTheme.accentColor,
                   ),
                 ),
                 Text(
