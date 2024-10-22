@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/data/repostory/movies_repostory_impl.dart';
 import 'package:movie_app/domain/entities/movies_entities.dart';
 import 'package:movie_app/presentation/search/bloc/search_bloc.dart';
+import 'package:movie_app/presentation/search/searchDetail.dart';
 import 'package:movie_app/presentation/search/widget/movie_group_widget.dart';
 import 'package:movie_app/presentation/theme.dart';
 
@@ -64,9 +65,15 @@ class _SearchingScreenState extends State<SearchingScreen>
                           icon: const Icon(Icons.search, color: Colors.white),
                           onPressed: () {
                             // Gửi sự kiện tìm kiếm khi người dùng nhấn nút
-                            context.read<SearchBloc>().add(SearchKeyWordMovies(
-                                keyWord: _searchController.text));
+                            // context.read<SearchBloc>().add(SearchKeyWordMovies(
+                            //     keyWord: _searchController.text));
                             // FocusScope.of(context).unfocus();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchDetailScreen(
+                                      searchQuery: _searchController.text),
+                                ));
                           },
                         ),
                         border: OutlineInputBorder(
@@ -114,18 +121,12 @@ class _SearchingScreenState extends State<SearchingScreen>
               Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
-                    final filteredMovies = state.movies.where((movie) {
-                      return movie.title!
-                          .toLowerCase()
-                          .contains(_searchController.text.toLowerCase());
-                    }).toList();
-
                     final List<List<MoviesEntities>> chunkedList = [];
-                    for (var i = 0; i < filteredMovies.length; i += 4) {
-                      chunkedList.add(filteredMovies.sublist(
+                    for (var i = 0; i < state.movies.length; i += 4) {
+                      chunkedList.add(state.movies.sublist(
                           i,
-                          i + 4 > filteredMovies.length
-                              ? filteredMovies.length
+                          i + 4 > state.movies.length
+                              ? state.movies.length
                               : i + 4));
                     }
 

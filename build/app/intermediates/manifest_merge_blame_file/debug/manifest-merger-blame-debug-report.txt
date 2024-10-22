@@ -34,61 +34,209 @@
 27-->C:\dart\movie_app\android\app\src\main\AndroidManifest.xml:42:13-50
 27-->C:\dart\movie_app\android\app\src\main\AndroidManifest.xml:42:19-48
 28        </intent>
-29    </queries>
-30
-31    <application
-32        android:name="android.app.Application"
-33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-33-->[androidx.core:core:1.6.0] C:\Users\ASUS\.gradle\caches\transforms-3\284a410c767ad6c7a2b0ffc8d8d85981\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
-34        android:debuggable="true"
-35        android:icon="@mipmap/ic_launcher"
-36        android:label="movie_app" >
-37        <activity
-38            android:name="com.example.movie_app.MainActivity"
-39            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-40            android:exported="true"
-41            android:hardwareAccelerated="true"
-42            android:launchMode="singleTop"
-43            android:taskAffinity=""
-44            android:theme="@style/LaunchTheme"
-45            android:windowSoftInputMode="adjustResize" >
-46
-47            <!--
-48                 Specifies an Android theme to apply to this Activity as soon as
-49                 the Android process has started. This theme is visible to the user
-50                 while the Flutter UI initializes. After that, this theme continues
-51                 to determine the Window background behind the Flutter UI.
-52            -->
-53            <meta-data
-54                android:name="io.flutter.embedding.android.NormalTheme"
-55                android:resource="@style/NormalTheme" />
-56
-57            <intent-filter>
-58                <action android:name="android.intent.action.MAIN" />
-59
-60                <category android:name="android.intent.category.LAUNCHER" />
-61            </intent-filter>
-62        </activity>
-63        <!--
-64             Don't delete the meta-data below.
-65             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-66        -->
-67        <meta-data
-68            android:name="flutterEmbedding"
-69            android:value="2" />
+29        <intent>
+29-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-12:18
+30            <action android:name="android.support.customtabs.action.CustomTabsService" />
+30-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-90
+30-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:21-87
+31        </intent>
+32    </queries>
+33
+34    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+34-->[androidx.media3:media3-common:1.4.0] C:\Users\ASUS\.gradle\caches\transforms-3\c8b4c1dd7eefa90e1a2c2c0fd330f27a\transformed\jetified-media3-common-1.4.0\AndroidManifest.xml:22:5-79
+34-->[androidx.media3:media3-common:1.4.0] C:\Users\ASUS\.gradle\caches\transforms-3\c8b4c1dd7eefa90e1a2c2c0fd330f27a\transformed\jetified-media3-common-1.4.0\AndroidManifest.xml:22:22-76
+35
+36    <permission
+36-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+37        android:name="com.example.movie_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+37-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+38        android:protectionLevel="signature" />
+38-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+39
+40    <uses-permission android:name="com.example.movie_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+40-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+40-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+41
+42    <application
+43        android:name="android.app.Application"
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\transforms-3\8eb7ca24c5a8501c91bdf20e389e1cbe\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+45        android:debuggable="true"
+46        android:icon="@mipmap/ic_launcher"
+47        android:label="movie_app" >
+48        <activity
+49            android:name="com.example.movie_app.MainActivity"
+50            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+51            android:exported="true"
+52            android:hardwareAccelerated="true"
+53            android:launchMode="singleTop"
+54            android:taskAffinity=""
+55            android:theme="@style/LaunchTheme"
+56            android:windowSoftInputMode="adjustResize" >
+57
+58            <!--
+59                 Specifies an Android theme to apply to this Activity as soon as
+60                 the Android process has started. This theme is visible to the user
+61                 while the Flutter UI initializes. After that, this theme continues
+62                 to determine the Window background behind the Flutter UI.
+63            -->
+64            <meta-data
+65                android:name="io.flutter.embedding.android.NormalTheme"
+66                android:resource="@style/NormalTheme" />
+67
+68            <intent-filter>
+69                <action android:name="android.intent.action.MAIN" />
 70
-71        <uses-library
-71-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-72            android:name="androidx.window.extensions"
-72-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-73            android:required="false" />
-73-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-74        <uses-library
-74-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-75            android:name="androidx.window.sidecar"
-75-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-76            android:required="false" />
-76-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-77    </application>
-78
-79</manifest>
+71                <category android:name="android.intent.category.LAUNCHER" />
+72            </intent-filter>
+73        </activity>
+74        <!--
+75             Don't delete the meta-data below.
+76             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+77        -->
+78        <meta-data
+79            android:name="flutterEmbedding"
+80            android:value="2" />
+81
+82        <service
+82-->[:firebase_core] C:\dart\movie_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+83            android:name="com.google.firebase.components.ComponentDiscoveryService"
+83-->[:firebase_core] C:\dart\movie_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
+84            android:directBootAware="true"
+84-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
+85            android:exported="false" >
+85-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:33:13-37
+86            <meta-data
+86-->[:firebase_core] C:\dart\movie_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+87                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+87-->[:firebase_core] C:\dart\movie_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+88                android:value="com.google.firebase.components.ComponentRegistrar" />
+88-->[:firebase_core] C:\dart\movie_app\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+89            <meta-data
+89-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:35:13-37:85
+90                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+90-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:36:17-109
+91                android:value="com.google.firebase.components.ComponentRegistrar" />
+91-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:37:17-82
+92        </service>
+93
+94        <activity
+94-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-20:47
+95            android:name="com.pichillilorenzo.flutter_inappwebview_android.in_app_browser.InAppBrowserActivity"
+95-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-112
+96            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+96-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-137
+97            android:exported="false"
+97-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-37
+98            android:theme="@style/AppTheme" />
+98-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-44
+99        <activity
+99-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:9-24:55
+100            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivity"
+100-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-120
+101            android:exported="false"
+101-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-37
+102            android:theme="@style/ThemeTransparent" />
+102-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-52
+103        <activity
+103-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:9-28:55
+104            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivity"
+104-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-114
+105            android:exported="false"
+105-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-37
+106            android:theme="@style/ThemeTransparent" />
+106-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-52
+107        <activity
+107-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:9-33:55
+108            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+108-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-134
+109            android:exported="false"
+109-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:31:13-37
+110            android:launchMode="singleInstance"
+110-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:32:13-48
+111            android:theme="@style/ThemeTransparent" />
+111-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:33:13-52
+112        <activity
+112-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:34:9-38:55
+113            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+113-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:35:13-128
+114            android:exported="false"
+114-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:36:13-37
+115            android:launchMode="singleInstance"
+115-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:37:13-48
+116            android:theme="@style/ThemeTransparent" />
+116-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:38:13-52
+117
+118        <receiver
+118-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:40:9-43:40
+119            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ActionBroadcastReceiver"
+119-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:41:13-119
+120            android:enabled="true"
+120-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:42:13-35
+121            android:exported="false" />
+121-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:43:13-37
+122
+123        <meta-data
+123-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:45:9-47:36
+124            android:name="io.flutter.embedded_views_preview"
+124-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:46:13-61
+125            android:value="true" />
+125-->[:flutter_inappwebview_android] C:\dart\movie_app\build\flutter_inappwebview_android\intermediates\merged_manifest\debug\AndroidManifest.xml:47:13-33
+126
+127        <provider
+127-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
+128            android:name="com.google.firebase.provider.FirebaseInitProvider"
+128-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:24:13-77
+129            android:authorities="com.example.movie_app.firebaseinitprovider"
+129-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:25:13-72
+130            android:directBootAware="true"
+130-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:26:13-43
+131            android:exported="false"
+131-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:27:13-37
+132            android:initOrder="100" />
+132-->[com.google.firebase:firebase-common:21.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\f3f752920c61f7693bcfd7d140eccbd9\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:28:13-36
+133
+134        <uses-library
+134-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+135            android:name="androidx.window.extensions"
+135-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+136            android:required="false" />
+136-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+137        <uses-library
+137-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+138            android:name="androidx.window.sidecar"
+138-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+139            android:required="false" />
+139-->[androidx.window:window:1.0.0-beta04] C:\Users\ASUS\.gradle\caches\transforms-3\a6c5abc72e5003a7a1a6a7bf1c39a760\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+140
+141        <meta-data
+141-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\13a48f77b9ca4fadcf6646f1f3966d13\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+142            android:name="com.google.android.gms.version"
+142-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\13a48f77b9ca4fadcf6646f1f3966d13\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+143            android:value="@integer/google_play_services_version" />
+143-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\13a48f77b9ca4fadcf6646f1f3966d13\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+144
+145        <provider
+145-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+146            android:name="androidx.startup.InitializationProvider"
+146-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+147            android:authorities="com.example.movie_app.androidx-startup"
+147-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+148            android:exported="false" >
+148-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+149            <meta-data
+149-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+150                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+150-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+151                android:value="androidx.startup" />
+151-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\7b56917201626da61715ef4dd283b073\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+152            <meta-data
+152-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\transforms-3\35a2d5e16c8c6ab936796c13e6d8f550\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+153                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+153-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\transforms-3\35a2d5e16c8c6ab936796c13e6d8f550\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+154                android:value="androidx.startup" />
+154-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\transforms-3\35a2d5e16c8c6ab936796c13e6d8f550\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+155        </provider>
+156    </application>
+157
+158</manifest>

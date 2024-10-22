@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'api_service.dart'; // Đảm bảo import ApiService
+import 'api_service.dart'; // Ensure to import ApiService
 
 class ApiMoviesService {
   static final ApiMoviesService _apiMoviesService =
@@ -23,7 +23,7 @@ class ApiMoviesService {
       return response.data['genres'] ?? [];
     } catch (e) {
       print('Lỗi khi lấy danh sách thể loại: $e');
-      return []; // Trả về danh sách rỗng nếu có lỗi
+      return []; // Return an empty list if there's an error
     }
   }
 
@@ -48,13 +48,15 @@ class ApiMoviesService {
     }
   }
 
-  // api get search
-  Future<List<dynamic>> fetchMoviesBySearch(String keyWord) async {
-    const String baseUrlSearching = '/search/movie';
+  // Lấy danh sách phim theo từ khóa tìm kiếm
+  Future<List<dynamic>> fetchMoviesBySearch(String query) async {
+    const String baseUrlSearching = '/search/movie'; // Thay đổi ở đây
+
     final response =
         await _apiService.dio.get(baseUrlSearching, queryParameters: {
-      'query': keyWord,
+      'query': query,
     });
+
     return response.data['results'] ?? [];
   }
 
@@ -73,7 +75,7 @@ class ApiMoviesService {
       }
     } catch (e) {
       print('Lỗi khi lấy danh sách phim xu hướng: $e');
-      return []; // Trả về danh sách rỗng nếu có lỗi
+      return []; // Return an empty list if there's an error
     }
   }
 }

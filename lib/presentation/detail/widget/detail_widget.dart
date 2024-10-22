@@ -1,3 +1,5 @@
+import 'dart:math'; // Import thư viện dart:math để sử dụng Random
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/presentation/detail/bloc/detail_bloc.dart';
@@ -10,12 +12,15 @@ class DetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DetailBloc, DetailState>(
       builder: (context, state) {
+        // Randomize danh sách relatedMovies
+        List relatedMovies = state.relatedMovies.toList();
+        relatedMovies.shuffle(Random()); // Trộn ngẫu nhiên danh sách
+
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: state.relatedMovies.take(5).map((movie) {
+            children: relatedMovies.take(5).map((movie) {
               return GestureDetector(
-                // Sử dụng GestureDetector để bắt sự kiện nhấn
                 onTap: () {
                   Navigator.push(
                     context,

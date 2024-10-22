@@ -15,9 +15,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       (event, emit) async {
         final categories = await movieRepository.getGenres();
         final genre = categories[0];
-        // final listMovies =
-        //     await movieRepository.getMoviesByGenre(genreId: genre.id!);
-        emit(SearchState(state.keyWord, categories, [], genre));
+        emit(SearchState(state.query, categories, [], genre));
         add(SearchEventLoadMoviesByGenre());
       },
     );
@@ -25,14 +23,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final listMovies =
           await movieRepository.getMoviesByGenre(state.tabCategories.id);
       emit(SearchState(
-          state.keyWord, state.categories, listMovies, state.tabCategories));
+          state.query, state.categories, listMovies, state.tabCategories));
     });
 
     on<SearchEventGenreMovies>(
       (event, emit) async {
         final genreMovies = await movieRepository.getGenres();
         emit(SearchState(
-            state.keyWord, genreMovies, state.movies, genreMovies[0]));
+            state.query, genreMovies, state.movies, genreMovies[0]));
       },
     );
 
@@ -41,15 +39,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           await movieRepository.getMoviesByGenre(event.selectedGenre.id);
 
       emit(SearchState(
-          state.keyWord, state.categories, genreMovies, event.selectedGenre));
+          state.query, state.categories, genreMovies, event.selectedGenre));
     });
+    on<SearchKeyWord>(
+      (event, emit) async {
+        final searchMovies = await movieRepository.getMovieSearch(event.query);
 
-    on<SearchKeyWordMovies>((event, emit) async {
-      final filteredMovies = state.movies.where((movie) {
-        return movie.title!.toLowerCase().contains(event.keyWord.toLowerCase());
-      }).toList();
-      emit(SearchState(state.keyWord, state.categories, filteredMovies,
-          state.tabCategories));
-    });
+        emit(SearchState(
+            event.query, state.categories, searchMovies, state.tabCategories));
+      },
+    );
   }
 }

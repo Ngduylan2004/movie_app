@@ -14,8 +14,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
 
   MoviesRepositoryImpl(this._movieService);
 
-  // lọc lấy theo tên thể loại
-
+  // Lấy danh sách thể loại phim
   @override
   Future<List<GenreMoviesEntities>> getGenres() async {
     final genreData = await _movieService.fetchGenreMovies();
@@ -24,6 +23,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
         .toList();
   }
 
+  // Lấy danh sách phim theo thể loại
   @override
   Future<List<MoviesEntities>> getMoviesByGenre(int genreId) async {
     final moviesData = await _movieService.fetchListMovies(genreId);
@@ -32,6 +32,16 @@ class MoviesRepositoryImpl implements MoviesRepository {
         .toList();
   }
 
+  // Tìm kiếm phim theo từ khóa
+  @override
+  Future<List<MoviesEntities>> getMovieSearch(String query) async {
+    final searchResults = await _movieService.fetchMoviesBySearch(query);
+    return searchResults
+        .map<MoviesModel>((movie) => MoviesModel.fromJson(movie))
+        .toList();
+  }
+
+  // Lấy danh sách phim trending
   @override
   Future<List<MoviesEntities>> getTrendingMovies() async {
     final trendingData = await _movieService.fetchTrendingMovies();
